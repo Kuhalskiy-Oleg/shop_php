@@ -1,0 +1,1216 @@
+html,body{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+body{
+	font-family: "Open Sans", sans-serif;
+	color: black;	
+}
+
+
+*,*::after,*::before {
+    box-sizing: border-box;
+}
+
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+.container{
+	width: 100%;
+	max-width: 1170px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+
+
+
+//_______________header_________________
+header{
+	width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.8);
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0px 0px 11px 1px rgba(0,0,0,.075);
+	
+}
+
+.header_home{
+	display: flex;	
+	align-items: center;
+	justify-content: space-between;	
+	width: 100%;
+	padding: 15px;
+
+	h1{
+		margin: 0;
+	}
+	
+
+
+	.nav_header{
+		display: flex;
+		
+
+		a{
+			display: inline-block;
+			padding: 0 15px;
+
+			&:last-child{
+				border-left: none;
+			}
+
+			&:hover{
+				text-decoration: none;
+			}
+		}
+	}
+
+}
+
+//_______________КОНЕЦ_header_________________
+
+
+
+
+
+
+
+
+
+
+//_______________main_________________
+main{
+	width: 100%;
+	
+}
+
+
+
+
+//______________________________ страница GLAVN.PHP
+//===============================================
+/* -------------------- НАЧАЛО стилей для главной страницы --------------------- */
+.glavn{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/* ----------------- КОНЕЦ стилей для главной страницы ---------------------- */
+
+
+
+
+
+
+
+
+
+
+//______________________________БЛОК С КАРТОЧКАМИ страница SHOP.PHP - ADMIN.PHP
+//===============================================
+.card{
+	display: flex;
+	justify-content: center;
+	margin: 50px 0 20px;
+
+
+	.card_wrapper{
+		display: flex;
+	    flex-wrap: wrap;
+	    justify-content: flex-start; 
+	    width: 900px;
+	    margin: 0 auto;
+
+
+
+	    .card_item{
+			display: flex;
+		    flex-direction: column;
+			width: 30%;
+			min-height: 490px;
+			margin: 0 15px 30px 15px;
+			padding-bottom: 15px;
+		    border: 1px solid #76807f;
+		    border-radius: 10px;
+		    box-shadow: 0 0px 10px rgba(0,0,0,.575);
+		}
+	      
+	}
+
+}
+
+
+
+
+//форма для удаления карточек при авторизованном пользователе
+.form_dell_calss{
+	display: flex;
+	flex-direction: column;
+	min-height: auto;
+
+
+	.btn_dell_calss{
+		display: block;
+		height: 30px;
+		background-color: red;
+		text-align: center;
+	}
+
+
+	#select_dell_id{
+		display: block;
+	    height: 30px;
+	}
+}
+
+
+.card-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 55px;
+    border-bottom: 1px solid #76807f;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    
+
+    &.update{
+    	margin-bottom: 15px;
+    }
+    &.add{
+		margin-bottom: 15px;
+	}
+
+    .text{
+    	position: relative;
+    	font-size: 20px;
+    	font-weight: 400;
+
+    	.value_brand.update{
+
+    		border: 2px dashed fade(blue, 70%);
+   			box-shadow: 0 0 5px fade(blue, 50%);
+    		&::placeholder{
+    			color: black;
+    		}
+    	}
+    	// .value_brand.delete{
+
+    	// 	border: 2px dashed fade(red, 70%)!important;
+   		// 	box-shadow: 0 0 5px fade(red, 50%)!important;
+    	// 	&::placeholder{
+    	// 		color: black;
+    	// 	}
+    	// }
+
+    	.text_error{
+    		position: absolute;
+    		top: 44px;
+    		left: -18px;
+    		color: red;
+    		font-size: 13px;
+			line-height: 1.2;
+    		width: 120%;
+    		background-color: fade(white,70%);
+			z-index: 99;
+			text-align: center;
+    	}
+    }
+
+
+}
+
+.id_card{
+
+	&.update{
+		display: flex;
+		justify-content: center;
+	}
+	&.add{
+		display: inline-block;
+		height: 26px;
+	}
+} 
+
+
+
+
+
+.card-body{
+	display: flex;
+    flex-direction: column;
+    padding: 15px;
+    height: 100%;
+    width: 100%;
+
+
+    	
+    .home_img{
+		display: flex;
+		width: 100%;
+		height: 200px;
+		position: relative;
+
+		&.update{
+			margin-bottom: 15px;	
+		}
+		&.add{
+			margin-bottom: 15px;
+		}
+		
+
+		.home_img_error{
+			position: absolute;
+			top: 200px;
+		    left: -1px;
+		    color: red;
+		    width: 100%;
+			font-size: 13px;
+			line-height: 1.2;
+			background-color: fade(white,70%);
+			z-index: 99;
+			text-align: center;
+		}
+
+	}
+		
+	
+	.img{
+		display: block;
+	    object-fit:  fill;
+	    width: 100%;
+	    height: 100%;
+	    border: 1px solid fade(black,30%);
+
+	    &.upload{
+    	    border: 2px dashed rgba(0,0,255,.7);
+			box-shadow: 0 0 5px rgb(0 0 255 / 50%);
+	    }
+	    &.add{
+			border: 2px dashed rgba(0,0,255,.7);
+			box-shadow: 0 0 5px rgb(0 0 255 / 50%);
+		}
+
+	}
+
+	.home_form_zamena_img{
+		display: flex;
+	    flex-direction: column;
+	    width: 100%;
+	    position: absolute;
+		top: 0;
+		left: 0;
+
+		.input_zamena_file.update{
+			height: auto!important;
+			background: white;
+			border: 2px dashed fade(blue, 70%);
+   			box-shadow: 0 0 5px fade(blue, 50%);
+		}
+		.input_zamena_img.update{
+			border: 1px solid fade(blue, 70%);
+    		box-shadow: 0 0 2px fade(blue, 50%);
+		}
+
+		.input_zamena_file.delete{
+			height: auto!important;
+			background: white;
+			border: 2px dashed fade(red, 70%);
+   			box-shadow: 0 0 5px fade(red, 50%);
+		}
+		.input_zamena_img.delete{
+			border: 1px solid fade(red, 70%);
+    		box-shadow: 0 0 2px fade(red, 50%);
+		}
+	}
+    
+    .form_zamena_img{
+		display: flex;
+		width: 100%;
+		height: 200px;
+		position: relative;
+		
+	}
+
+
+
+
+
+	.description{
+	height: 88px;
+	width: 100%;
+	margin: 15px 0 ;
+	position: relative;
+
+		&.update{
+			margin: 15px 0 25px;	
+		}
+		&.add{
+			margin: 15px 0 25px;
+		}
+
+		.value_discription.update{
+			color: black;
+			z-index: 100;
+			border: 2px dashed fade(blue, 70%);
+   			box-shadow: 0 0 5px fade(blue, 50%);
+			position: relative;
+		}
+		.value_discription.add{
+			color: black;
+			z-index: 100;
+			border: 2px dashed fade(green, 70%);
+   			box-shadow: 0 0 5px fade(green, 50%);
+			position: relative;
+		}
+
+
+		
+		//для ограничения кол-ва строк в блоке с описанием товара
+		.description_span{
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;  
+			overflow: hidden;
+		} 
+
+
+		.description_error{
+			position: absolute;
+			top: 102%;
+    		left: 1px;
+			color: red;
+			width: 100%;
+			font-size: 13px;
+			line-height: 1.2;
+			background-color: fade(white,70%);
+			z-index: 99;
+		}  
+	}
+
+
+
+
+
+
+	.price,.color,.Model{
+		text-align: left;
+	}
+
+	.Model{
+		margin-top: auto;
+		margin-bottom: 10px;
+		position: relative;
+
+		&.update{
+			margin-bottom: 25px;
+		}
+		&.add{
+			margin-bottom: 25px;
+		}
+
+		span .value_model.update{
+			border: 2px dashed fade(blue, 70%);
+   			box-shadow: 0 0 5px fade(blue, 50%);
+   			
+		}
+		span .value_model.delete{
+			border: 2px dashed fade(red, 70%);
+   			box-shadow: 0 0 5px fade(red, 50%);
+   			
+		}
+
+		.Model_error{
+			position: absolute;
+			top: 44px;
+    		left: 1px;
+			color: red;
+			width: 100%;
+			font-size: 13px;
+			line-height: 1.2;
+			background-color: fade(white,70%);
+			z-index: 99;
+		}
+	}
+	.color{
+		
+		margin-bottom: 10px;
+		position: relative;
+
+		&.update{
+			margin-bottom: 25px;
+		}
+		&.add{
+			margin-bottom: 25px;
+		}
+
+		span .value_color.update{
+			border: 2px dashed fade(blue, 70%);
+   			box-shadow: 0 0 5px fade(blue, 50%);
+   			
+		}
+		span .value_color.delete{
+			border: 2px dashed fade(red, 70%);
+   			box-shadow: 0 0 5px fade(red, 50%);
+   			
+		}
+
+		.color_error{
+			position: absolute;
+			top: 44px;
+    		left: 1px;
+			color: red;
+			width: 100%;
+			font-size: 13px;
+			line-height: 1.2;
+			background-color: fade(white,70%);
+			z-index: 99;
+		}
+	}
+
+	.price{
+		position: relative;
+		margin-bottom: 10px;
+
+		&.update{
+			margin-bottom: 25px;
+		}
+		&.add{
+			margin-bottom: 25px;
+		}
+
+		span .value_price.update{
+			border: 2px dashed fade(blue, 70%);
+   			box-shadow: 0 0 5px fade(blue, 50%);
+  
+		}
+
+		span .value_price.delete{
+			border: 2px dashed fade(red, 70%);
+   			box-shadow: 0 0 5px fade(red, 50%);
+  
+		}
+
+		
+		.price_error{
+			position: absolute;
+			top: 44px;
+    		left: 1px;
+			color: red;
+			width: 100%;
+			font-size: 13px;
+			line-height: 1.2;
+			background-color: fade(white,70%);
+			z-index: 99;
+		}
+	}
+
+
+
+	.form_card_body_add_order{
+		display: flex;
+		margin-bottom: 10px;
+
+		.product_id{
+			display: none;
+		}
+	}
+	
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+.btn {
+    display: inline-block;
+    height: 55px;
+    width: 90%;
+
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 20px;
+
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0px;
+    text-align: center;
+    cursor: pointer;
+
+    border: 1px solid #0d6efd;
+    border-radius: 10px;
+
+    background-color: white;
+    color: #0d6efd;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+	
+	&:hover{
+		background-color: #0d6efd;
+		color: white;
+	}
+
+	
+
+
+	.button_href{
+		display: block;
+		color: inherit;
+		text-decoration: none;
+		padding: 0 20px ;
+	}
+}
+
+.home_btn_delete{
+	display: flex;
+	position: relative;
+	height: 32.11px;
+}
+
+.home_input_radio_delete{
+	display: none;
+	align-items: center;
+	width: 90%;
+	margin-right: auto;
+    margin-left: auto;
+	height: 32.11px;
+	border-radius: 10px;
+	color: rgba(255,0,0,.7)!important;
+    border: 1px solid rgba(255,0,0,.7)!important;
+    box-shadow: 0 0 5px rgba(255,0,0,.7)!important;
+    position: absolute;
+    top: 0;
+    left: 13px;
+    z-index: 10;
+
+	.radio_delete{
+		display: inline-block;
+		width: 50%;
+		height: 32.11px;
+		line-height: 32.11px;
+	 	text-align: center;
+		color: rgba(255,0,0,.7)!important;
+	    border: 1px solid rgba(255,0,0,.7)!important;
+	    box-shadow: 0 0 5px rgba(255,0,0,.7)!important;
+	
+
+	    &.yes{
+	    	border-radius: 10px 0 0 10px ;
+	    	&:hover{
+				background-color: rgba(255,0,0,.5);
+				color: white!important;
+			}
+	    }
+	    &.no{
+	    	display: none;
+	  //   	border-radius:0 10px 10px 0 ;
+	  //   	&:hover{
+			// 	background-color: rgba(255,0,0,.5);
+			// 	color: white!important;
+			// }
+	    }
+	}
+
+	.radio_2{
+		display: inline-block;
+		width: 50%;
+		height: 32.11px;
+		line-height: 32.11px;
+	 	text-align: center;
+		color: rgba(255,0,0,.7)!important;
+	    border: 1px solid rgba(255,0,0,.7)!important;
+	    box-shadow: 0 0 5px rgba(255,0,0,.7)!important;
+	    border-radius:0 10px 10px 0 ;
+    	&:hover{
+			background-color: rgba(255,0,0,.5);
+			color: white!important;
+		}
+}
+
+
+}
+.delete_label{
+	display: inline-block;
+	align-items: center;
+	width: 90%;
+	margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    border-radius: 10px;
+	height: 32.11px!important;
+	line-height: 32.11px;
+	color: fade(red, 70%)!important;
+	border: 1px solid fade(red, 70%)!important;
+	box-shadow: 0 0 5px fade(red, 70%)!important;
+	&:hover{
+		background-color: fade(red, 50%)!important;
+		color: white!important;
+	}
+}
+
+
+
+// 2 карточки на ряд
+@media(max-width: 992px){
+	.card .card_wrapper{
+	    max-width: 600px;
+	}
+
+	.card .card_wrapper .card_item{
+		width: 42%;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	
+	.card .card_wrapper .card_item:last-child{
+		margin-right: auto;
+		margin-left: 4%;
+	}
+	
+}
+
+// 1 карточка на ряд
+@media(max-width: 750px){
+	.card .card_wrapper .card_item{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 100px;
+		width: 70%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	.card .card_wrapper .card_item:last-child{
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+}
+
+
+@media(max-width: 500px){
+	// 1 карточка на ряд
+	.card .card_wrapper .card_item{
+		width: 80%;
+	}
+
+	//шапка сайта
+	.header_item .left_item_header .name_autor{
+		font-size: 15px;
+		margin-left: 5px;
+	}
+	.header_item .left_item_header .logo{
+		background-size: cover;
+		height: 40px;
+		width: 40px;
+	}
+	.header_item nav a{
+		font-size: 14px;
+
+		&:last-child{
+			border-left: 1px solid rgba(255,255,255,.1);
+		}
+
+	}
+	.header_item nav{
+		flex-direction: column;
+	}
+}
+
+
+
+
+
+
+
+.card .card_wrapper .card_item{
+
+	//карточка для добавления других карточек
+	&.card_item--add{
+		border: 3px dashed green;
+		box-shadow: 0 0 10px green;
+	}
+
+	//карточка для изменения в карточке
+	&.card_item--update{
+		border: 3px dashed fade(blue, 70%)!important;
+		box-shadow: 0 0 10px fade(blue, 80%)!important;
+	}
+
+
+	//карточка для удаления других карточек
+	&.card_item--delete{
+		border: 3px dashed fade(red, 70%)!important;
+		box-shadow: 0 0 10px fade(red, 80%)!important;
+		position: relative;
+	}
+
+	&.card_item--rezult{
+		border: none;
+		box-shadow: none;
+	}
+
+}
+
+.card-header.card-header--rezult{
+	border-bottom: none;
+}
+
+.btn{
+	&--add{
+		color: green;
+		border: 1px solid green;
+
+		&:hover{
+			background-color: green;
+			color: white;
+		}
+	}
+
+	&--create{
+		color: fade(blue, 70%)!important;
+		border: 1px solid fade(blue, 70%)!important;
+		box-shadow: 0 0 5px fade(blue, 70%)!important;
+		&:hover{
+			background-color: fade(blue, 50%)!important;
+			color: white!important;
+		}
+	}
+
+
+	&--delete{
+		display: none!important;
+		
+	}
+
+	
+
+
+		
+	
+}
+
+
+form.form_card{
+	display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 490px;
+
+    span{
+    	display: flex;
+    	justify-content: space-between;
+    }
+
+    textarea{
+    	display: inline-block;
+		height: 88px;
+		width: 230px;
+		border: 2px dashed green;
+		box-shadow: 0 0 5px green;
+
+		&::placeholder{
+			padding-top: 30px;
+			text-align: center;
+
+		}
+	}
+
+
+    input{
+    	display: inline-block;
+    	height: 40px;
+    	border: 2px dashed green;
+    	box-shadow: 0 0 5px green;
+
+    	&::placeholder{
+    		text-align: center;
+    	}
+    }
+
+
+
+    .card-body{
+
+    	.home_img{
+
+    		.file_input{
+
+	    		display: block;
+	    		position: relative;
+	    		.img{
+		    		border: 2px dashed green;
+		    		box-shadow: 0 0 5px green;
+		    	}
+
+		    	.span_absolut{
+		    		display: block;
+		    		text-align: center;
+		    		font-size: 17px;
+		    		position: absolute;
+		    		top: 50%;
+		    		left: 50%;
+		    		transform: translate3d(-50%, -50%, 0);
+		    		width: 100%;
+		    	}
+		    }
+    	}
+    }
+}
+
+//______________________________КОНЕЦ БЛОКА С КАРТОЧКАМИ страница SHOP.PHP
+//======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//______________________________НАЧАЛО страница ADMIN.PHP
+//===============================================
+
+.selector_admin{
+	display: flex;
+	justify-content: space-between;
+
+	.selector_card{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 33.33%;
+		text-align: center;
+		font-size: 25px;
+		font-weight: 700;
+		
+
+
+
+
+		&--Create{
+			background-color: fade(green, 30%);
+			cursor: pointer;
+			&.activ{
+				background-color: fade(green, 60%);
+			}
+			&:hover{
+				background-color: fade(green, 50%);
+				.link_Create{
+					text-decoration: underline;
+					
+				}
+			}
+		}
+
+		&--Update{
+			background-color: fade(blue, 30%);
+			cursor: pointer;
+			&.activ{
+				background-color: fade(blue, 60%);
+			}
+			&:hover{
+				background-color: fade(blue, 50%);
+				.link_Update{
+					text-decoration: underline;
+				}
+			}
+		}
+
+		&--Delete{
+			background-color: fade(red, 30%);
+			cursor: pointer;
+			&.activ{
+				background-color: fade(red, 60%);
+			}
+			&:hover{
+				background-color: fade(red, 50%);
+				.link_Delete{
+					text-decoration: underline;
+				}
+			}
+		}
+
+
+		a{	
+			color: white;
+			text-decoration: none;
+			padding: 15px 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+//______________________________КОНЕЦ страницы ADMIN.PHP
+//======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//______________________________НАЧАЛО страница personal_account.PHP
+//===============================================
+
+
+.home_avtorizac{
+	display: flex;
+	width: 100%;
+
+	.form_registration{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: flex-start;
+
+		input{
+			display: inline-block;
+			width: 50%;
+			height: 30px;
+			margin:  5px 0;
+		}
+
+		.submit_form_registration{
+			margin-top: 20px;
+		}
+
+		#span{
+			display: inline-block;
+			color: red;
+			min-height: 7px;
+		    font-size: 13px;
+		    line-height: 13px;
+		}
+	}
+
+	.form_avtorization{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: flex-star;
+
+		input{
+			display: inline-block;
+			width: 50%;
+			height: 30px;
+			margin:  5px 0;
+		}
+
+		#span{
+			display: inline-block;
+			color: red;
+			min-height: 7px;
+		    font-size: 13px;
+		    line-height: 13px;
+		}
+
+		.submit_form_registration{
+			margin-top: 20px;
+		}
+	}
+}
+
+
+
+.admin{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	h2{
+		width: 50%;
+	}
+	.exit{
+		width: 50%;
+		text-align: right;
+		text-decoration: none;
+		color: red;
+		font-size: 20px;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+
+
+//______________________________КОНЕЦ  страница  personal_account.PHP
+//======================================================
+
+
+
+
+
+//______________________________НАЧАЛО страница OPEN_PRODUCT.PHP
+//===============================================
+
+.content{
+	display: flex;
+	width: 100%;
+	margin-top: 50px;
+
+	.contetn_img{
+
+    	width: 40%;
+		
+		margin-right: 20px;
+
+		img{
+			display: block;
+			width: 100%;
+			max-height: 600px;
+			padding: 5px;
+			border: 1px solid fade(black,10%);
+			
+		}
+	}
+
+
+	.content_description{
+		display: flex;
+		flex-direction: column;
+		width: 60%;
+
+		.name_telephone{
+			display: block;
+			font-size: 40px;
+			margin: 0 0 20px;
+			line-height: 33px;
+
+		}
+
+
+		.description_telephone{
+			display: block;
+			font-size: 20px;
+			margin: 0 0 18px;
+			line-height: 1.3;
+			text-align: justify;
+			letter-spacing: 1px;
+		}
+
+		.color_telephone{
+			display: block;
+			font-size: 20px;
+			margin: 0 0 18px;
+			line-height: 1.3;
+		}
+
+		.price_telephone{
+			display: block;
+			font-size: 20px;
+			margin: 0 0 18px;
+			line-height: 1.3;
+		}
+	}
+}
+
+
+//______________________________КОНЕЦ  страница  OPEN_PRODUCT.PHP
+//======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+//______________________________НАЧАЛО  СТРАНИЦЫ  ORDER.PHP
+//======================================================
+.count_order{
+	position: relative;
+}
+#error_count{
+	position: absolute;
+	top: -18px;
+	left: 0;
+	color: red;
+	width: 100%;
+	font-size: 13px;
+	line-height: 1.2;
+	background-color: fade(white,70%);
+	z-index: 99;
+}
+//______________________________КОНЕЦ  СТРАНИЦЫ  ORDER.PHP
+//======================================================
+
+
+//_______________КОНЕЦ_main_________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*_________________________FOOTER___________________________*/
+footer {
+	display: flex;
+	margin-top: auto;
+	width: 100%;
+	padding: 25px 0;
+	border-top: 1px solid fade(black,20%);
+
+
+	
+
+}
+
+.Footer{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
