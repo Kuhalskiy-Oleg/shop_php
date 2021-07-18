@@ -255,20 +255,17 @@
 				(pathinfo($file, PATHINFO_EXTENSION) == 'jpeg') || 
 				(pathinfo($file, PATHINFO_EXTENSION) == 'png'))  {
 
-				$img[] = [
-
-					'name_img'  =>  pathinfo($file, PATHINFO_BASENAME)
-				];
+				$img[] = pathinfo($file, PATHINFO_BASENAME);
 
 			}
 
 		}
 
 	}
-	// echo "изображения в папке " . IMG_DIR;
-	// echo "<pre><br>";
-	// print_r($img);
-	// echo "</pre><br>";
+	echo "изображения в папке " . IMG_DIR;
+	echo "<pre><br>";
+	print_r($img);
+	echo "</pre><br>";
 
 	
 
@@ -278,25 +275,16 @@
 	//вывести все из бызы данных $mysql из таблицы userd
 	$tabl_products = mysqli_query($db_lesson_6_php, "SELECT * FROM `products` ");
 
-	
-
-	
-	//проходимся по двум массивом и удаляем из массива $img те элементы  , которые уже есть в базе данных для того чтобы не загружать в бд то что уже там есть (хоть в бд и стоит проверка на уникальность)
-	foreach ($img as $key =>  $value) {
-
-		foreach ($tabl_products as  $tabl_products_items) {
-
-			//strtolower — Преобразует строку в нижний регистр
-			$tabl_products_items['name_img'] = strtolower($tabl_products_items['name_img']);
-
-			if ($tabl_products_items['name_img'] == $value['name_img']) {
-				
-				unset($img[$key] );
-				
-			}
-			
+	//обходим массив бд
+	foreach ($tabl_products as $value) {
+		//все строки перведим в нижний регистр
+		$value['name_img'] = strtolower($value['name_img']);
+		//если в массиве img есть картинки как в бд то
+		if (in_array($value['name_img'], $img)) {
+			$img = array_flip($img);          //Меняем местами ключи и значения для того чтобы удаление было по значению ключа
+			unset($img[$value['name_img']] ); //удаляем элемент в массиве img 
+			$img = array_flip($img);          //Меняем местами ключи и значения в исзодное положение
 		}
-
 	}
 
 	
@@ -312,7 +300,7 @@
 	
 		foreach ($img as $file) {
 
-			unlink(IMG_DIR . $file['name_img']);
+			unlink(IMG_DIR . $file);
 
 		}
 	}
