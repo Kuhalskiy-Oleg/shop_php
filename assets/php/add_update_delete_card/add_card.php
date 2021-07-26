@@ -269,25 +269,25 @@
 
 
 					//подключаемся к бд
-					$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
+					require('../db/link_db.php');
 
 
 					//защищаем бд от иньекций
-					$value_brand_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_brand_valid)));
+					$value_brand_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_brand_valid)));
 
-					$value_discription_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_discription_valid)));
+					$value_discription_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_discription_valid)));
 
-					$value_model_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_model_valid)));
+					$value_model_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_model_valid)));
 
-					$value_color_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_color_valid)));
+					$value_color_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_color_valid)));
 
-					$value_price_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_price_valid)));
+					$value_price_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_price_valid)));
 
-					$name_img_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($_FILES['add_file']['name'])));
+					$name_img_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($_FILES['add_file']['name'])));
 					
 
 					//записываем в бд данные
-					if (mysqli_query($db_lesson_6_php, " INSERT INTO `products` ( `brand`      ,
+					if (mysqli_query($products_lesson_6, " INSERT INTO `products` ( `brand`      ,
 														 						  `description`,
 														 						  `model`      ,
 														 						  `color`      ,
@@ -303,7 +303,7 @@
 							                            		  '{$name_img_db}'                 ) ")  ){ 
 							                            		 
 							//если запись в дб возратила true то
-							$rezult_add_data_db =  mysqli_insert_id($db_lesson_6_php);
+							$rezult_add_data_db =  mysqli_insert_id($products_lesson_6);
 								                                                           
 							
 							echo json_encode([ 
@@ -322,7 +322,7 @@
 						//удаляем картинку т.к запись в бд не удалась а картинку уже сохранилась на сервере
 						unlink(IMG_DIR . $_FILES['add_file']['name'] );
 
-						$rezult_add_data_db =  mysqli_error($db_lesson_6_php);
+						$rezult_add_data_db =  mysqli_error($products_lesson_6);
 						echo json_encode([ 
 
 	   		 					'succes'               => 'succes'             , 
@@ -336,7 +336,7 @@
 
 					}
 
-					mysqli_close($db_lesson_6_php);
+					mysqli_close($products_lesson_6);
 
 			}
 

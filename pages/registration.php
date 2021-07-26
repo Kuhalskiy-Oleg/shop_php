@@ -11,19 +11,19 @@
 		<label>Регистрация</label>
 
 		<span  class="name_user_error" id="span"></span>
-		<input type="text"     name="form_registration_name"         value="<?php echo $form_registration_name_valid;   ?>"   placeholder="введите ваше имя" >
+		<input type="text"     name="form_registration_name"         value="<?=$form_registration_name_valid??null?>"   placeholder="введите ваше имя" >
 		
 
 		<span  class="family_user_error" id="span"></span>
-		<input type="text"     name="form_registration_family"       value="<?php echo $form_registration_family_valid; ?>"   placeholder="введите вашу фамилию">
+		<input type="text"     name="form_registration_family"       value="<?=$form_registration_family_valid??null?>"   placeholder="введите вашу фамилию">
 		
 
 		<span  class="login_user_error" id="span"></span>
-		<input type="text"     name="form_registration_login"        value="<?php echo $form_registration_login_valid;  ?>"   placeholder="введите логин">
+		<input type="text"     name="form_registration_login"        value="<?=$form_registration_login_valid??null?>"   placeholder="введите логин">
 		
 
 		<span  class="email_user_error" id="span"></span>
-		<input type=""         name="form_registration_email"        value="<?php echo $form_registration_email_valid;  ?>"   placeholder="введите ваш email">
+		<input type=""         name="form_registration_email"        value="<?=$form_registration_email_valid??null?>"   placeholder="введите ваш email">
 		
 
 		<span  class="password_1_user_error" id="span"></span>

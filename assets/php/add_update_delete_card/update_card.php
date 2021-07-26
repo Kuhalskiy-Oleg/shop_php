@@ -41,17 +41,17 @@
 			
 			
 			//подключаемся к бд
-			$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
+			require('../db/link_db.php');
 
 			//защищаем бд от иньекций
-			$value_id_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($id_card)));
+			$value_id_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($id_card)));
 
 			//берем имя картинки и помещаем результат запроса в переменную
-			$old_name_img = mysqli_query($db_lesson_6_php, " SELECT `name_img` FROM `products` WHERE `id` IN ({$value_id_db}) ");
+			$old_name_img = mysqli_query($products_lesson_6, " SELECT `name_img` FROM `products` WHERE `id` IN ({$value_id_db}) ");
 
-			if(mysqli_query($db_lesson_6_php, " DELETE  FROM `products` WHERE `id` IN ({$value_id_db}) ")){
+			if(mysqli_query($products_lesson_6, " DELETE  FROM `products` WHERE `id` IN ({$value_id_db}) ")){
 
-				$rezult_delete_card =  mysqli_insert_id($db_lesson_6_php);
+				$rezult_delete_card =  mysqli_insert_id($products_lesson_6);
 
 				if ($rezult_delete_card['update_brand'] == 0) {
 					$rezult_delete_card = "удаление карточки id № $value_id_db из БД произведено успешно";
@@ -109,7 +109,7 @@
 
 
 			}else{
-				$rezult_delete_card =  mysqli_error($db_lesson_6_php);
+				$rezult_delete_card =  mysqli_error($products_lesson_6);
 				echo json_encode([ 
 
 		   		 					'delete'               => 'error'                , 
@@ -119,7 +119,7 @@
 		   						]);
 			}
 
-			mysqli_close($db_lesson_6_php);
+			mysqli_close($products_lesson_6);
 			exit;
 
 			
@@ -402,7 +402,7 @@
 
 
 					//подключаемся к бд
-					$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
+					require('../db/link_db.php');
 
 					//массив который мы будем наполнять результатами обновления колонок бд
 					$array_rezult_update_db = [];
@@ -412,13 +412,13 @@
 					//______________________________________________ОБНОВЛЯЕМ ТАБЛИЦУ В БД
 						
 					//защищаем бд от иньекций
-					$value_id_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($id_card)));
-					$value_brand_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_brand_valid)));
-					$value_discription_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_discription_valid)));
-					$value_model_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_model_valid)));
-					$value_color_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_color_valid)));
-					$value_price_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($value_price_valid)));
-					$name_img_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($_FILES['input_zamena_img']['name'])));
+					$value_id_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($id_card)));
+					$value_brand_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_brand_valid)));
+					$value_discription_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_discription_valid)));
+					$value_model_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_model_valid)));
+					$value_color_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_color_valid)));
+					$value_price_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($value_price_valid)));
+					$name_img_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($_FILES['input_zamena_img']['name'])));
 
 
 
@@ -429,10 +429,10 @@
 					if (isset($rezult['succes'])) {
 
 						//БЕРЕМ СТАРОЕ ИМЯ КАРТИНКИ ДО ЕГО ОБНОВЛЕНИЯ ЧТОБЫ УДАЛИТЬ СТАРУЮ КАРТИНКУ ЕСЛИ МЫ ЗАГРУЗИЛИ НОВУЮ
-						$old_name_img = mysqli_query($db_lesson_6_php, " SELECT `name_img` FROM `products` WHERE `id` IN ({$value_id_db}) ");
+						$old_name_img = mysqli_query($products_lesson_6, " SELECT `name_img` FROM `products` WHERE `id` IN ({$value_id_db}) ");
 
 						//записываем в бд данные
-						if (mysqli_query($db_lesson_6_php, " UPDATE `products` SET `brand`       = '{$value_brand_valid_db}'        ,
+						if (mysqli_query($products_lesson_6, " UPDATE `products` SET `brand`       = '{$value_brand_valid_db}'        ,
 																				   `description` = '{$value_discription_valid_db}'  ,
 																				   `model`       = '{$value_model_valid_db}'		,
 																				   `color`       = '{$value_color_valid_db}'		,
@@ -443,7 +443,7 @@
 
 
 						
-							$rezult_update =  mysqli_insert_id($db_lesson_6_php);
+							$rezult_update =  mysqli_insert_id($products_lesson_6);
 
 							$array_rezult_update_db[] = [
 															'update_brand'       => $rezult_update                       ,
@@ -550,7 +550,7 @@
 							//удаляем картинку т.к запись в бд не удалась а картинку уже сохранилась на сервере
 							unlink(IMG_DIR . $_FILES['input_zamena_img']['name'] );
 
-							$rezult_update =  mysqli_error($db_lesson_6_php);
+							$rezult_update =  mysqli_error($products_lesson_6);
 
 							$array_rezult_update_db[] = [
 															'mysqli_error'       => $rezult_update                       
@@ -584,12 +584,12 @@
 					}else{
 
 						//берем имя старой картинки и помещаем результат запроса в переменную
-						$old_name_img = mysqli_query($db_lesson_6_php, " SELECT `name_img` FROM `products` WHERE `id` IN ({$value_id_db}) ");
+						$old_name_img = mysqli_query($products_lesson_6, " SELECT `name_img` FROM `products` WHERE `id` IN ({$value_id_db}) ");
 						//mysql_fetch_assoc — Возвращает ряд результата запроса в качестве ассоциативного массива
 						$old_name_img_assoc = mysqli_fetch_assoc($old_name_img);
 
 						//записываем в бд данные
-						if (mysqli_query($db_lesson_6_php, " UPDATE `products` SET `brand`       = '{$value_brand_valid_db}'            ,
+						if (mysqli_query($products_lesson_6, " UPDATE `products` SET `brand`       = '{$value_brand_valid_db}'            ,
 																				   `description` = '{$value_discription_valid_db}'      ,
 																				   `model`       = '{$value_model_valid_db}'		    ,
 																				   `color`       = '{$value_color_valid_db}'		    ,
@@ -600,7 +600,7 @@
 
 
 						
-							$rezult_update =  mysqli_insert_id($db_lesson_6_php);
+							$rezult_update =  mysqli_insert_id($products_lesson_6);
 
 							$array_rezult_update_db[] = [
 															'update_brand'       => $rezult_update                       ,
@@ -653,7 +653,7 @@
 						}else{
 
 
-							$rezult_update =  mysqli_error($db_lesson_6_php);
+							$rezult_update =  mysqli_error($products_lesson_6);
 
 							$array_rezult_update_db[] = [
 															'mysqli_error'       => $rezult_update                       
@@ -673,7 +673,7 @@
 
 					}
 
-					mysqli_close($db_lesson_6_php);
+					mysqli_close($products_lesson_6);
 
 					
 					

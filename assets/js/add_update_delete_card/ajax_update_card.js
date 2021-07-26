@@ -445,7 +445,7 @@ $(document).ready(function() {
                                 }, 100);
                                 
                                 setTimeout(function () {
-                                   window.location.href = "index.php?page=admin"; 
+                                   window.location.href = "index.php?page=admin&select=product_edid"; 
                                 }, 150);
                                 
                             }else if(data['delete'] == 'error'){
@@ -496,7 +496,7 @@ $(document).ready(function() {
 
                                 
                                 setTimeout(function () {
-                                   window.location.href = "index.php?page=admin"; 
+                                   window.location.href = "index.php?page=admin&select=product_edid"; 
                                 }, 150);
                                 
 
@@ -538,7 +538,7 @@ $(document).ready(function() {
 
                                 
                                 setTimeout(function () {
-                                   window.location.href = "index.php?page=admin"; 
+                                   window.location.href = "index.php?page=admin&select=product_edid"; 
                                 }, 150);
 
 
@@ -589,7 +589,7 @@ $(document).ready(function() {
 
                                 
                                 setTimeout(function () {
-                                   window.location.href = "index.php?page=admin"; 
+                                   window.location.href = "index.php?page=admin&select=product_edid"; 
                                 }, 150);
 
 
@@ -629,7 +629,7 @@ $(document).ready(function() {
 
                                 
                                 setTimeout(function () {
-                                   window.location.href = "index.php?page=admin"; 
+                                   window.location.href = "index.php?page=admin&select=product_edid"; 
                                 }, 150);
 
 

@@ -51,6 +51,7 @@
 		}elseif(mb_strlen($form_registration_family) < 3 || mb_strlen($form_registration_family) > 50 ){
 			$familyErr = "Недопусимая длина фамилии(от 3 до 50 символов)";
 
+		//u - По символам юникода разбивает
 		// проверяем, содержит ли имя только буквы и пробелы
 		}elseif(!preg_match("/^(([a-zA-Z]{1,50})|([а-яА-ЯЁёІіЇїҐґЄє]{1,50}))$/u",$form_registration_family)) {
 			
@@ -231,21 +232,21 @@
 
 
 			//подключаемся к бд
-			$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
+			require('../db/link_db.php');
 
 				
 			//защищаем бд от иньекций
-			$value_name_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_name_valid)));
-			$value_family_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_family_valid)));
-			$value_login_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_login_valid)));
-			$value_email_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_email_valid)));
-			$value_password_hesh_SOVPAD_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_password_valid_hesh_SOVPAD)));
+			$value_name_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_name_valid)));
+			$value_family_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_family_valid)));
+			$value_login_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_login_valid)));
+			$value_email_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_email_valid)));
+			$value_password_hesh_SOVPAD_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_password_valid_hesh_SOVPAD)));
 
 
 
 
 			//записываем в бд данные
-			if (mysqli_query($db_lesson_6_php, " INSERT INTO `userss` (   `name`    ,
+			if (mysqli_query($products_lesson_6, " INSERT INTO `users`  (   `name`    ,
 												 						  `family`  ,
 												 						  `login`   ,
 												 						  `email`   ,
@@ -261,7 +262,7 @@
 					                            		                  
 					                            		 
 					//если запись в дб возратила true то
-					$rezult_add_data_db =  mysqli_insert_id($db_lesson_6_php);
+					$rezult_add_data_db =  mysqli_insert_id($products_lesson_6);
 						                                                           
 					
 					echo json_encode([ 
@@ -282,7 +283,7 @@
 			}else{
 
 
-				$rezult_add_data_db =  mysqli_error($db_lesson_6_php);
+				$rezult_add_data_db =  mysqli_error($products_lesson_6);
 				echo json_encode([ 
 
 		 					'succes'                       => 'error_add_user'               ,             
@@ -300,7 +301,7 @@
 
 			}
 
-			mysqli_close($db_lesson_6_php);
+			mysqli_close($products_lesson_6);
 		
 	}
 	

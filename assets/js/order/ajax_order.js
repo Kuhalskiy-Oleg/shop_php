@@ -72,7 +72,7 @@ $(document).ready(function() {
                                 }, 100);
                                 
                                 setTimeout(function () {
-                                   window.location.href = "index.php?page=order"; 
+                                   window.location.href = "index.php?page=order&elem=open_order"; 
                                 }, 150);
                                 
                             }else if(data['succes'] == 'succes_err'){
@@ -81,9 +81,16 @@ $(document).ready(function() {
                             	value_count.css({'border':'1px dashed green','box-shadow':'0 0 5px green'});
                             	error_count.html('');
 
-                                setTimeout(function () {
-                                    alert( data['login'] + ' , при формировании вашего заказа возникла ошибка' + '\n' + data['rezult_error'] )                      
-                                }, 100);
+                                if (data['login'] == null) {
+                                    setTimeout(function () {
+                                        alert( 'для оформления заказа вам необходимо зарегистрироваться на сайте' )                      
+                                    }, 100);
+                                }else{
+                                    setTimeout(function () {
+                                        alert( data['login'] + ' , при формировании вашего заказа возникла ошибка' + '\n' + data['rezult_error'] )                      
+                                    }, 100);
+                                }
+                                
                                  
                             }else if(data['count_Err'] != '') {
 

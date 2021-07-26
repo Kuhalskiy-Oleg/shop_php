@@ -7,12 +7,12 @@
 <!-- 3. * На странице просмотра отдельной фотографии полного размера под картинкой должно быть указано число её просмотров. -->
 <?php  
 	//подключаемся к бд
-	$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307);
+	require('assets/php/db/link_db.php');
 
 	//прибавляем к просмотрам плюс 1
-	mysqli_query($db_lesson_6_php,"UPDATE `products` SET `views` = `views` + 1 WHERE `id` IN ({$item_img['id']}) ");
+	mysqli_query($products_lesson_6,"UPDATE `products` SET `views` = `views` + 1 WHERE `id` IN ({$item_img['id']}) ");
 
-	mysqli_close($db_lesson_6_php);
+	mysqli_close($products_lesson_6);
 
 ?>
 

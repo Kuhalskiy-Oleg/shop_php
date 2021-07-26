@@ -1,7 +1,4 @@
-<?php session_start();  ?>
 
-
-<!-- 4. * На странице просмотра галереи список фотографий должен быть отсортирован по популярности. Популярность - число просмотров фотографии. -->
 <form action="index.php?page=shop" method="post">
 	<select name="select">
 		<option value="all" selected >все картинки</option>
@@ -12,16 +9,16 @@
 
 
 <!-- показываем все картинки если селектор в режиме all -->
-<?php  $select = $_POST['select']; if ($select == 'all' ): ?>
+<?php  $select = $_POST['select'] ?? null; if ($select == 'all' ): ?>
 	
 <div class="card">
 
 	<div class="card_wrapper">
 
 		<?php  
-			$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
-			$tabl_products = mysqli_query($db_lesson_6_php, "SELECT * FROM `products` ");
-			mysqli_close($db_lesson_6_php);
+			require('assets/php/db/link_db.php');
+			$tabl_products = mysqli_query($products_lesson_6, "SELECT * FROM `products` ");
+			mysqli_close($products_lesson_6);
 			foreach ($tabl_products as  $items_products): 
 		?>
 	
@@ -55,9 +52,9 @@
 		  			<span>Price:<?= $items_products['price']; ?></span>
 		  		</div>
 
-		  		<form class="form_card_body_add_order" method="post" action="index.php?page=shop">
-		  			<input type="hiden" name="product_id" class="product_id" value="<?= $items_products['id']; ?>">
-		  			<input type="submit" value="добавить в коризну">
+		  		<form class="form_card_body_add_order" method="post" action="assets/php/shop/add_korzina.php">
+		  			<input type="hiden"  name="product_ID" class="product_id" value="<?= $items_products['id']; ?>">
+		  			<input type="submit" value="добавить в коризну" id="input_submit_add_elem_in_korzina">
 		  		</form>
 		  		
 		  	</div>
@@ -86,9 +83,9 @@
 	<div class="card_wrapper">
 
 		<?php  
-			$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
-			$tabl_images = mysqli_query($db_lesson_6_php, "SELECT * FROM `products` ORDER BY `views` DESC ");
-			mysqli_close($db_lesson_6_php);
+			require('assets/php/db/link_db.php');
+			$tabl_images = mysqli_query($products_lesson_6, "SELECT * FROM `products` ORDER BY `views` DESC ");
+			mysqli_close($products_lesson_6);
 			foreach ($tabl_images as  $items_products): 
 		?>
 	
@@ -122,9 +119,9 @@
 		  			<span>Price:<?= $items_products['price']; ?></span>
 		  		</div>
 
-		  		<form class="form_card_body_add_order" method="post" action="index.php?page=shop">
-		  			<input type="hiden" name="product_id" class="product_id" value="<?= $items_products['id']; ?>">
-		  			<input type="submit" value="добавить в коризну">
+		  		<form class="form_card_body_add_order" method="post" action="assets/php/shop/add_korzina.php">
+		  			<input type="hiden"  name="product_ID" class="product_id" value="<?= $items_products['id']; ?>">
+		  			<input type="submit" value="добавить в коризну" id="input_submit_add_elem_in_korzina">
 		  		</form>
 		  		
 		  	</div>
@@ -158,9 +155,9 @@
 	<div class="card_wrapper">
 
 		<?php  
-			$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
-			$tabl_products = mysqli_query($db_lesson_6_php, "SELECT * FROM `products` ");
-			mysqli_close($db_lesson_6_php);
+			require('assets/php/db/link_db.php');
+			$tabl_products = mysqli_query($products_lesson_6, "SELECT * FROM `products` ");
+			mysqli_close($products_lesson_6);
 			foreach ($tabl_products as  $items_products): 
 		?>
 
@@ -195,9 +192,9 @@
 		  			<span>Price:<?= $items_products['price']; ?></span>
 		  		</div>
 
-		  		<form class="form_card_body_add_order" method="post" action="index.php?page=shop">
-		  			<input type="hiden" name="product_id" class="product_id" value="<?= $items_products['id']; ?>">
-		  			<input type="submit" value="добавить в коризну">
+		  		<form class="form_card_body_add_order" method="post" action="assets/php/shop/add_korzina.php">
+		  			<input type="hiden"  name="product_ID" class="product_id" value="<?= $items_products['id']; ?>">
+		  			<input type="submit" value="добавить в коризну" id="input_submit_add_elem_in_korzina">
 		  		</form>
 		  		
 		  	</div>
@@ -216,15 +213,6 @@
 <?php endif ?>
 
 
-
-<?php  
-	//инициализируем сессию product_id и наполняем ее id товаров
-	if ($_POST['product_id'] != '') {
-		$_SESSION['product_id']  .= $_POST['product_id'].';';
-	}
-
-	
-?>
 
 
 

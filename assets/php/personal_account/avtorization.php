@@ -103,25 +103,27 @@
 
 
 			//подключаемся к бд
-			$db_lesson_6_php = mysqli_connect("127.0.0.1", "root", "root", "products_lesson_6" , 3307) or die ("НЕ УДАЛОСЬ ПОДКЛЮЧИТСЯ К БАЗЕ ДАННЫХ");
+			require('../db/link_db.php');
 
 				
 			//защищаем бд от иньекций
-			$value_login_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_login_valid)));
-			$value_password_valid_db = mysqli_real_escape_string($db_lesson_6_php, (string)htmlspecialchars(strip_tags($form_registration_password_valid)));
+			$value_login_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_login_valid)));
+			$value_password_valid_db = mysqli_real_escape_string($products_lesson_6, (string)htmlspecialchars(strip_tags($form_registration_password_valid)));
 
 			//получаем хеш пароля по логину пользователя из бд
-			$tabl_users  = mysqli_query($db_lesson_6_php, "SELECT * FROM `userss` WHERE  `login` = '{$value_login_valid_db}'  ");
+			$tabl_users  = mysqli_query($products_lesson_6, "SELECT * FROM `users` WHERE  `login` = '{$value_login_valid_db}'  ");
+			//mysqli_fetch_assoc - забирает последний ряд из таблицы а у нас там как раз может быть только одна строкатак login уникален
 			$tabl_users_items = mysqli_fetch_assoc($tabl_users);
 
 			//mysqli_num_rows — Возвращает количество рядов результата запроса
+			//проверка на наличае пользователя
 			if (!mysqli_num_rows($tabl_users)) {
 				echo json_encode([ 
 			 					'error'           => 'error_login'                 , 
 			 					'rezult'          => 'такой пользователь не найден !',
 							]);
 				
-			
+			//проверяем функцией password_verify на совпадение введенного пароля с паролев в бд
 			}elseif(password_verify($value_password_valid_db, $tabl_users_items['password'] )){
 
 				$_SESSION['loginn']   = $tabl_users_items['login'];
@@ -161,7 +163,7 @@
 
 
 
-			mysqli_close($db_lesson_6_php);
+			mysqli_close($products_lesson_6);
 			
 
 
