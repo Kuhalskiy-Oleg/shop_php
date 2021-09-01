@@ -29,6 +29,7 @@
     function valid_email($data) {
 		$data = trim($data);             //trim - функция  удаляет пробелы до и после слова но в самом слове пробелы не удаляет
 		$data = stripslashes($data);     //stripslashes — Удаляет экранирование символов
+		$data = strip_tags($data);   
 		$data = htmlspecialchars($data); //htmlspecialchars — Преобразует специальные символы в HTML-сущности
 		return $data;
     }

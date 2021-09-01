@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	//берем все элементы из DOM дерева с id submit
     
-    const Btn_submit = document.querySelectorAll('#submit_order_edit_pos'); 
+    const Btn_submit = document.querySelectorAll('.submit_order_edit_pos'); 
     //console.log(Btn_submit);
 
     //если колв-во элементов больше нуля то будем выполнять дальнейший код
@@ -57,7 +57,7 @@ $(document).ready(function() {
 
                             if (data['rezult'] == 'succes') {
 
-                                window.location.href = "index.php?page=order&elem=open_order"; 
+                                window.location.href = "index.php?page=basket&elem=open_order"; 
 
                             }else if(data['rezult'] == 'error'){
 

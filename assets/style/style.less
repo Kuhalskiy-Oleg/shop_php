@@ -5,10 +5,21 @@ html,body{
 }
 
 
+li{
+	display: inline-block;//чтобы небыло точек маркеров
+	line-height: 0.7;
+	// display: list-item;//ВКЛЮЧИТЬ НУМЕРАЦИЮ ЧЕМ ЛИБО
+	// list-style-type: upper-alpha;//НУМЕРАЦИЯ ЗАГЛАВНЫМИ БУКВАМИ
+	// list-style-type: decimal;//НУМЕРАЦИЯ ЧИСЛАМИ
+}
+
 
 body{
 	font-family: "Open Sans", sans-serif;
 	color: black;	
+	&.lock{
+		overflow: hidden;
+	}
 }
 
 
@@ -17,10 +28,10 @@ body{
 }
 
 .wrapper{
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	overflow-x: hidden;
+	// display: flex;
+	// flex-direction: column;
+	// height: 100%;
+	// overflow-x: hidden;
 }
 
 .container{
@@ -86,10 +97,502 @@ header{
 
 
 //_______________main_________________
-main{
-	width: 100%;
+// main{
+// 	width: 100%;
+	
+// }
+//НАЧАЛО БЛОКА MAIN_____________________________________________________
+
+
+.main{
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 100px;
+    height: 100%;
+    width: calc(100% - 200px);
+
+
+    
+}
+
+
+
+//ШАПКИ САЙТА она будет не в блоке intro а перед ним
+
+// шапка оссновная
+.head_intro_osnovnoy{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1000;
+	
+	width: calc(100% - 200px);
+	height: auto;
+
+	background-color: white;
+	box-shadow: 0 5px 22px fade(#000000,25%);
+
+	ol,ul,p{
+		padding: 0;
+		margin: 0;
+
+		li{
+			display: inline-block;//чтобы небыло точек маркеров
+			line-height: 0.7;
+			// display: list-item;//ВКЛЮЧИТЬ НУМЕРАЦИЮ ЧЕМ ЛИБО
+			// list-style-type: upper-alpha;//НУМЕРАЦИЯ ЗАГЛАВНЫМИ БУКВАМИ
+			// list-style-type: decimal;//НУМЕРАЦИЯ ЧИСЛАМИ
+		}
+
+	}
+
+	.nav_panel_left{
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		width: 60%;
+		height: auto;
+	}
+
+	.nav_panel_right{
+		display: flex;
+		justify-content: flex-end;
+		width: 40%;
+		height: auto;
+	}
+
+}
+
+.nav_list{
+	display: flex;
+}
+
+.nav_list_item{
+	position: relative;
+
+	
+
+	& .transparent:first-child{
+		background-color: transparent;
+	}
+
+	
+
+	//при наведении на блок с кнопкой мы покажем ее дочерний элемент
+	&:hover{
+
+		// >  означает что справа, должно быть непосредственным наследником(детём) селектора слева от стрелк
+		>.open_list{
+			display: flex;			
+		}
+
+		//при наведении на блок с кнопкой и ее листом с ссылками мы изменим у нее цвет
+		.button_nav{
+			background-color: #7cd8ff5e;
+		}
+	}
+}
+
+.open_list{
+	display: none;
+	flex-direction: column;
+
+	width: 300px;
+	border-radius: 0 0 6px 6px;
+	box-shadow:-6px 12px 9px 0px rgb(0 0 0 / 15%);
+	padding: 5px 0 5px 25px;
+
+	position: absolute;
+	transition:  100%;
+	left: -220px;
+    top: 20px;
+
+	background-color: #baeaff;
+
+
+	.open_list_items{
+		padding: 4.5px 12px;
+		background-color: inherit;
+		margin-bottom: 5px;
+		transition: background-color .1s ease-in-out;//Анимация начинается и заканчивается медленно.
+
+		a.item_nav_header.button_nav{
+			transition: background-color .1s ease-in-out;//Анимация начинается и заканчивается медленнopen
+		}
+		&:hover{
+			background-color: darken(#baeaff,7%);
+			a.item_nav_header.button_nav{
+				background-color: darken(#baeaff,7%);
+			}
+		}
+
+
+
+		.open_list_link{
+			display: block;
+			font-size: 15px;
+		    color: #000;
+		    text-decoration: none;
+		    line-height: 1.3;
+
+
+		}
+	}
 	
 }
+
+
+
+
+.button_nav{
+	display: block;
+
+	padding: 15px;
+
+	text-decoration: none;
+	border: 0;
+	outline: none;
+	background: none;
+	cursor: pointer;
+
+	position: relative;
+
+	//text-transform: uppercase;
+	font-size: 20px;
+	line-height: 1;
+
+	color: black;
+
+	transition: background-color .1s linear;
+
+	&.activ{
+		background-color: #7cd8ff5e;
+	}
+
+	&:hover{
+		text-decoration: none;
+	}
+
+
+
+}
+
+
+
+
+form.in_header{
+	display: block;
+	max-width: 210px;
+	width: 100%;
+	height: auto;
+
+	background-color: @gray;
+
+	&--mini{
+		height: 100%;
+	}
+
+}
+
+.in_header_input{
+	display: block;
+	width: 100%;
+	height: 100%;
+
+	padding-left: 20px;
+
+	font-size: 12px;
+
+	border: none;
+	outline: none;
+
+	color: @white;
+	background-color: transparent;
+
+	&::placeholder{
+		color: fade(@white , 40%);
+	}
+}
+
+
+
+
+
+
+
+
+
+// щапка мини
+.head_intro_mini{
+	display: none;
+    
+    width: 100%;
+    height: 40px;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    
+    
+    background-color: white;
+    box-shadow: 0 5px 22px rgb(0 0 0 / 25%);
+
+    nav{
+    	display: flex;
+    	justify-content: space-between;
+    	align-items: center;
+    	width: 100%;
+
+    	.nav_list_item{
+    		display: block;
+    		height: 100%;
+		    padding-right: 15px;
+		    text-decoration: none;
+		    border: 0;
+		    outline: 0;
+		    background: 0 0;
+		    cursor: pointer;
+		    position: relative;
+		    font-size: 20px;
+		    line-height: 1;
+		    color: #000;
+		    transition: background-color .1s linear;
+
+		    &:hover,&:focus{
+
+				>.open_list{
+					display: flex;			
+				}
+
+				.button_nav{
+					background-color: #baeaff;
+
+					&.strelka:before{
+						background: #baeaff;
+					}
+
+				}
+
+				
+			}
+
+		    .button_nav{
+				display: block;
+
+				padding: 0;
+				height: 100%;
+				text-decoration: none;
+				border: 0;
+				outline: none;
+				background: none;
+				cursor: pointer;
+
+				position: relative;
+
+				//text-transform: uppercase;
+				font-size: 20px;
+				line-height: 1;
+
+				color: black;
+
+				transition: background-color 0s linear;
+
+				&:hover{
+					text-decoration: none;
+					background-color: #baeaff;
+
+					&.strelka:before{
+						background: #baeaff;
+					}
+				}
+
+
+
+				
+
+				//пишем стрелочку
+				//пишем что если у кнопки будет второй клас strelka то мы:
+				&.strelka{
+					font-size: 16px;
+				    font-weight: 300;
+				    text-transform: none;
+					position: relative;
+					padding-right: 5px; //увеличиваем правй отступ в 2 раза чтобы было место под стрелочку
+					padding-left: 10px;
+
+					//добавляем стрелочку
+					&:after{
+						display: block;
+						content: '';
+						border-style: solid;
+						border-width: 8px 5px 0 5px;
+						border-color: black transparent transparent transparent;
+						padding-bottom: 4px;//чтобы приподнять стрелочку
+
+						position: absolute;
+						top: 40%;
+						right: -9px;
+
+						//transform: translateY(-50%);//что бы выровнить идеально ровно 
+					}
+
+					&:before{
+						display: block;
+						content: '';
+						position: absolute;
+						top: 0;
+						right: 0;
+						height: 100%;
+					    width: 20px;
+					    right: -15px;
+					    background: transparent;
+					    transition: background-color 0s linear;
+					}
+				}
+
+
+
+			}
+
+    	}
+    }
+	
+}
+
+
+.nav_panel_mini{
+	display: none;
+	position: absolute;
+	top: 60%;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+    
+
+    //делаем бордер с градиентом
+    border-bottom: 1px solid #2b2a2c;
+    border-image: linear-gradient(to right,transparent 70%,#2b2a2c 116%);
+    border-image-slice: 1;
+}
+
+.nav_panel_flex{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.button_nav.item_nav_panel--mini{
+	margin-bottom: 20px;
+}
+
+.burger{
+	display: flex;
+    width: 30px;
+    height: 30px;
+
+    cursor: pointer;
+    outline: 0;
+    text-decoration: none;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+
+    position: relative;
+    margin-left: 10px;
+
+
+
+    &.activ_burger .palka{
+    	background: transparent;
+    	transition-duration: .2s ;
+
+    	&:after{
+    		height: 3px;
+    		top: 50%;
+    		transform: rotate(-45deg);
+    		transition-duration: .5s ;
+    	}
+    	&:before{
+    		height: 3px;
+    		top: 50%;
+    		transform: rotate(45deg); 
+    		transition-duration: .5s ;
+    	}
+    }
+}
+
+
+.palka{
+	display: block;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+
+
+    transition: background 1s linear;
+
+}
+
+.palka:after{
+	content: "";
+    position: absolute;
+    top: 6px;
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+
+    transition: transform .2s linear , height .3s linear;
+}
+.palka:before{
+	content: "";
+    bottom: 6px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+
+    transition: transform .2s linear , height .3s linear;
+}
+
+
+
+
+
+
+//____конец мини меню
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,6 +619,338 @@ main{
 
 
 
+//=========================================================================
+//____________________________САЙТБАР
+//НАЧАЛО БЛОКА SAITBAR_____________________________________________________
+@gray: #ffe3e3;
+@brown:#121212;
+@white: #fff;
+@head_intro:#0D0D0D;
+@shadow:#000000;
+@blue_btn:#104BE3;
+
+
+.maska_sidebar{
+	display: block;
+    height: 0%;
+    width: 0%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    background-color: fade(black,0%);
+
+    &.activ{
+    	height: 100%;
+    	width: 100%;
+    	background-color: fade(black,20%);
+    }
+    
+}
+.sidebar{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 200px;
+
+	height: 100vh;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	border-right:1px solid black;
+	//background-color: @gray;
+	box-shadow: 5px 0 30px fade(#050505, 10%); //по оси х(в право) 5 пикселей и у цвета опасити делаем на 0.1% 
+
+	transition: transform .7s cubic-bezier(.20, 1, .63, 1);
+
+	&.activ{
+		transform: translateX(0px);
+		transition-duration: 1.5s;
+		background-color: white;
+	}
+
+	//чтобы скролить блок сайтбара
+	overflow-y: scroll;
+	overflow-x: hidden;  //убираем горизонтальный скролл
+	flex-flow: row wrap; //БЕЗ ЖТОГО СКРОЛЛ ПРОКРУЧИВАЛСЯ НЕ ДО САМОГО ВНХА
+	//прячем полосу скрола
+    scrollbar-width: none; // firefox 
+
+	//прячем полосу скрола
+	&::-webkit-scrollbar { // webkit 
+	    width: 0; //для вертикального
+	    height: 0;//для горизонтального
+	}
+	
+
+}
+
+
+.sidebar_headr{
+	height: 120px; //в размер картинки
+	width: 100%;
+
+	background-color: @gray;//чтобы если картинка будет не занимать все пространство блока у нас был бэкграунд в другой  цвет не как у сайтбара
+
+	img{
+		display: block;
+		width: 100%;
+		height: 100%;
+
+		//  object-fit заменяет выравнивание картинки по центру с помощью позиции абсолют 
+		//object-fit: cover;// центрирование картинки в блоке с установленными размерами по центру и автоматом добавляется overlow-hiden
+		object-fit: contain;//масштабирует картинку так чтобы она поместилась в блок с установленными размерами с сохранением пропорций картинки
+	}
+}
+
+
+.sidebar_content{
+	
+	width: 100%;
+	margin-top: -50px;//чтобы поднять весь блок и чтобы аватарка залезла на фото header
+
+	.avatar{
+		display: block;
+		width: 100px;
+		height: 100px;
+		margin: 0 auto 19px;
+
+		position: relative;//чтобы бордер не прятался под картинку
+
+		border: 2px solid @white;
+		border-radius: 50px;
+		box-shadow: 0 7px 20px fade(#000000 , 25%);
+		background-color: @gray; //чтобы если картинки не будет вместо нее был такой же цвет как и у фона сайтбара
+
+
+		object-fit: cover;// центрирование картинки в блоке с установленными размерами по центру и автоматом добавляется overlow-hiden тоже самое что и выравнивание с помощью position absolut . картинка занимает все место в блоке
+		//object-fit: contain;//масштабирует картинку так чтобы она поместилась в блок с установленными размерами с сохранением пропорций картинки . картинка может не занять все место в блоке
+	}
+
+
+	.profile_name{
+		font-size: 18px;
+		width: 100%;
+		text-align: center;
+	}
+
+
+	.profile_specialnost{
+		font-size: 14px;
+		font-weight: 300;
+		width: 100%;
+		text-align: center;
+		color: #DEDEDE;
+	}
+
+
+	.social{
+		display: flex;
+		justify-content: center;
+		margin-bottom: 60px;
+		margin-top: 19px;
+
+		.social_items{
+			margin-right: 15px;
+
+			a{
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		.social_items:last-child{
+			margin-right: 0;
+		}
+	}
+
+
+	.profile_text{
+		width: 100%;
+		
+		text-align: center;
+		font-size: 12px;
+		color: @white;
+		line-height: 1.8;
+
+		margin-bottom: 60px;
+	}
+
+
+}	
+
+
+.sidebar_footer{
+	width: 100%;
+
+
+
+	.button_saidbar{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		width: 100%;
+		height: auto;
+
+		.btn{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			max-width: 120px;
+		    width: 100%;
+
+		    padding: 15.5px 0px;
+		    border-radius: 25px;
+		    border: none;
+		    outline: none;
+		    cursor: pointer;
+
+		    font-size: 12px;
+		    font-weight: 500;
+		    text-decoration: none;
+		    line-height: .8;
+		    
+		    color: #fff;
+
+		    transition: background-color .2s linear;
+
+
+		    
+		}
+
+	}
+}
+
+
+//изменяем в сайтбаре уже готовую навигацию которая по умолчанию будет в шапке сайта
+.nav_saidebar{
+	display: none;
+	padding-top: 10px;
+	margin-bottom: 55px;
+    margin-top: 20px;
+    border-top: 1px solid #1C1C1C;
+
+	ul{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		.nav_list_item{
+
+			// &:nth-child(1) .button_nav{
+			// 	color: #7cd8ff;
+			// }
+
+			// &:hover,&:focus{
+
+			// 	>.open_list{
+			// 		display: flex;			
+			// 	}
+
+			// 	.button_nav{
+			// 		//background: none;
+			// 		//color: #7cd8ff;
+			// 		&.strelka{
+			// 			&:after{
+			// 				border-color: black transparent transparent transparent;
+							
+			// 			}
+			// 		}
+
+			// 	}
+
+				
+			// }
+
+
+			.button_nav{
+				padding-left: 0;
+				&.strelka{
+					padding-right: 230px;
+					font-size: 16px;
+				    font-weight: 300;
+				    text-transform: none;
+				}
+			}
+
+
+
+			.open_list{
+				display: none;
+				box-shadow: none;
+			    padding: 0px 0 0 17px;
+			    position: static;
+			    background: none;
+
+
+				.open_list_items{
+					display: block;
+    				padding: 0;
+
+					background: none;
+
+					
+
+					// &:hover{
+					// 	background: none;
+					// 	color: #107EFF;
+					// }
+
+					// .open_list_link{
+					// 	display: block;
+					//     font-size: 15px;
+					//     color: #fff;
+					//     text-decoration: none;
+					//     line-height: 2;
+					//     margin-bottom: 2px;
+					//     &:hover{
+					// 		background: none;
+					// 		color: #107EFF;
+					// 	}
+
+
+					// }
+				}
+				
+			}
+
+
+
+			a{
+				display: block;
+				font-size: 16px;
+				font-weight: 300;
+				padding-left: 0;
+				color: white;
+				text-transform: none;
+				
+			}
+
+			
+
+			
+		}
+	}
+	
+}
+//КОНЕЦ БЛОКА SAIDEBAR_____________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //______________________________БЛОК С КАРТОЧКАМИ страница SHOP.PHP - ADMIN.PHP
 //===============================================
@@ -123,31 +958,147 @@ main{
 	display: flex;
 	justify-content: center;
 	margin: 50px 0 20px;
+	width: 100%;
 
 
 	.card_wrapper{
 		display: flex;
 	    flex-wrap: wrap;
 	    justify-content: flex-start; 
-	    width: 900px;
+	    width: 100%;
 	    margin: 0 auto;
+
+
 
 
 
 	    .card_item{
 			display: flex;
 		    flex-direction: column;
-			width: 30%;
+			width: 33.333%;
 			min-height: 490px;
-			margin: 0 15px 30px 15px;
+			margin: 0;
 			padding-bottom: 15px;
-		    border: 1px solid #76807f;
-		    border-radius: 10px;
-		    box-shadow: 0 0px 10px rgba(0,0,0,.575);
+    		box-shadow: inset 0 0 15px 1px rgb(112 210 255 / 57%);
+
+    		&:nth-child(1){
+    			border: 1px solid #7cd8ff;
+    		}
+    		&:nth-child(3){
+    			border-top: 1px solid #7cd8ff;
+    			border-bottom: 1px solid #7cd8ff;
+    		}
+    		&:nth-child(5){
+    			border: 1px solid #7cd8ff;
+    		}
+    		&:nth-child(7){
+    			border-left: 1px solid #7cd8ff;
+    			border-bottom: 1px solid #7cd8ff;
+    			border-right: 1px solid #7cd8ff;
+    		}
+    		&:nth-child(9){
+    			border-bottom: 1px solid #7cd8ff;
+    		}
+    		&:nth-child(11){
+    			border-left: 1px solid #7cd8ff;
+    			border-bottom: 1px solid #7cd8ff;
+    			border-right: 1px solid #7cd8ff;
+    		}
+
+    		&:hover{
+    			background-color: #7cd8ff24;
+    		}
 		}
 	      
 	}
 
+}
+
+
+
+.pagination{
+	display: flex;
+	justify-content: center;
+	widows: 100%;
+
+	.pagination_link{
+		display: inline-block;
+		text-decoration: none;
+		color: black;
+		font-size: 18px;
+		font-weight: 400;
+		margin: 0 5px;
+		padding: 0 5px;
+		position: relative;
+
+		&:after{
+			display: block;
+			content: '';
+			width: 8px;
+			height: 1px;
+			background-color: black;
+			position: absolute;
+			top: 50%;
+			left: 105%;
+
+		}
+
+
+		&:last-child:after{
+			display: none;
+			content: none;
+		}
+
+	}
+
+	.pagination_link_first{
+		display: inline-block;
+		text-decoration: none;
+		color: black;
+		font-size: 18px;
+		font-weight: 400;
+		margin-right: 2px;
+		padding: 0 ;
+		position: relative;
+
+		
+	}
+
+	span{
+		display: flex;
+    	align-items: flex-end;
+    	margin-right: -7px;
+    	cursor: context-menu;
+	}
+}
+
+
+.nav_products{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+
+	&.admin{
+		margin-bottom: 60px;
+	}
+
+	&.order_edid{
+		margin-bottom: 50px;
+	}
+}
+
+.poisk_card_products_elem{
+	display: flex;
+	position: relative;
+
+	.error_select_card_poisk{
+		display: block;
+		color: red;
+		position: absolute;
+		top: 20px;
+		right: 0;
+		font-size: 13px;
+	}
 }
 
 
@@ -180,8 +1131,8 @@ main{
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 55px;
-    border-bottom: 1px solid #76807f;
+	height: 40px;
+    //border-bottom: 1px solid #76807f;
     text-align: center;
     border-radius: 5px 5px 0 0;
     
@@ -260,11 +1211,18 @@ main{
     .home_img{
 		display: flex;
 		width: 100%;
-		height: 200px;
+		height: 270px;
 		position: relative;
+
+
 
 		&.update{
 			margin-bottom: 15px;	
+			.tag_a{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
 		}
 		&.add{
 			margin-bottom: 15px;
@@ -289,10 +1247,10 @@ main{
 	
 	.img{
 		display: block;
-	    object-fit:  fill;
+	    object-fit:  cover;
 	    width: 100%;
 	    height: 100%;
-	    border: 1px solid fade(black,30%);
+	    //border: 1px solid fade(black,30%);
 
 	    &.upload{
     	    border: 2px dashed rgba(0,0,255,.7);
@@ -363,7 +1321,7 @@ main{
 
 		.value_discription.update{
 			color: black;
-			z-index: 100;
+			z-index: 99;
 			border: 2px dashed fade(blue, 70%);
    			box-shadow: 0 0 5px fade(blue, 50%);
 			position: relative;
@@ -673,16 +1631,48 @@ main{
 
 
 // 2 карточки на ряд
-@media(max-width: 992px){
+@media(max-width: 1000px){
+	
 	.card .card_wrapper{
-	    max-width: 600px;
+	    max-width: 100%;
 	}
 
 	.card .card_wrapper .card_item{
-		width: 42%;
-	    margin-left: auto;
-	    margin-right: auto;
-	}
+		width: 50%;
+		&:nth-child(1){
+			border: 1px solid #7cd8ff;
+		}
+		&:nth-child(3){
+			border-top: 1px solid #7cd8ff;
+			border-bottom: 1px solid #7cd8ff;
+			border-right: 1px solid #7cd8ff;
+			border-left: 0;
+		}
+		&:nth-child(5){
+			border-bottom: 1px solid #7cd8ff;
+			border-right: 1px solid #7cd8ff;
+			border-left: 1px solid #7cd8ff;
+			border-top: 0;
+		}
+		&:nth-child(7){
+			border-bottom: 1px solid #7cd8ff;
+			border-right: 1px solid #7cd8ff;
+			border-left: 0;
+			border-top: 0;
+		}
+		&:nth-child(9){
+			border-bottom: 1px solid #7cd8ff;
+			border-right: 1px solid #7cd8ff;
+			border-left: 1px solid #7cd8ff;
+			border-top: 0;
+		}
+		&:nth-child(11){
+			border-bottom: 1px solid #7cd8ff;
+			border-right: 1px solid #7cd8ff;
+			border-left: 0;
+			border-top: 0;
+		}
+}
 	
 	.card .card_wrapper .card_item:last-child{
 		margin-right: auto;
@@ -692,7 +1682,7 @@ main{
 }
 
 // 1 карточка на ряд
-@media(max-width: 750px){
+@media(max-width: 550px){
 	.card .card_wrapper .card_item{
 		display: flex;
 		flex-direction: column;
@@ -827,7 +1817,7 @@ form.form_card{
     textarea{
     	display: inline-block;
 		height: 88px;
-		width: 230px;
+		width: 100%;
 		border: 2px dashed green;
 		box-shadow: 0 0 5px green;
 
@@ -860,6 +1850,7 @@ form.form_card{
 
 	    		display: block;
 	    		position: relative;
+	    		width: 100%;
 	    		.img{
 		    		border: 2px dashed green;
 		    		box-shadow: 0 0 5px green;
@@ -879,6 +1870,100 @@ form.form_card{
     	}
     }
 }
+
+
+
+
+
+
+
+
+//______popup__________
+
+
+
+
+.popup{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	width: 100%;
+	height: 100%;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+
+	//Предназначен для отображения или скрытия элемента, включая рамку вокруг него и фон. При скрытии элемента, хотя он и становится не виден, место, которое элемент занимает, остается за ним. 
+	visibility: hidden;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	background-color: rgba(0,0,0,.7);
+
+	opacity: 0;
+	
+	transition: all .8s linear;
+
+	&.open{
+		visibility: visible;
+		opacity: 1;
+
+		.popup_content{
+			transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			opacity: 1;
+		}
+		
+	}
+
+	
+}
+
+.PopupLinks{
+	display: block;
+	width: 100%;
+    height: auto;
+}
+
+.popup_content{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;	
+    width: 600px;
+    max-height: 600px;
+    overflow: hidden;
+	transform: perspective(600px) translate(0px, -100%) rotateX(60deg);
+	opacity: 0;
+	transition: all .8s linear;
+
+	.close_popup{
+		display: flex;
+		align-items: center;
+		justify-content: center;	
+		position: absolute;	
+		top: 0;
+		right: 0;
+		cursor: pointer;
+		font-weight: 700;
+		line-height: 25px;
+		background-color: white;
+		border: 1px solid black;
+		text-align: center;
+	}
+
+}
+
+
+
+
+
+
+
+
 
 //______________________________КОНЕЦ БЛОКА С КАРТОЧКАМИ страница SHOP.PHP
 //======================================================
@@ -978,7 +2063,7 @@ form.form_card{
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	margin-bottom: 50px;
+	margin-bottom: 5px;
 	a{
 		display: block;
 		width: 50%;
@@ -1015,7 +2100,6 @@ table {
 	display: block;
 	width: 100%;
 	max-height: 600px;
-	height: 100%;
    	border: 1px solid grey;
    	overflow-y: scroll;
    	overflow-x: scroll;
@@ -1267,24 +2351,32 @@ span[data_2='error_count']{
 .error_hom{
 	display: inline-block;
 	position: relative;
+	width: 30%;
+	input{
+		display: block;
+		width: 100%;
+		margin-bottom: 5px;
+	}
 	.error{
 		display: block;
 		position: absolute;
 		top: 3px;
    		font-size: 13px;
-   	 	right: -234px;
+   	 	right: -244px;
+    	width: 240px;
    	 	color: red;
 	}
 }
 
 .delete{
 	
-	a{	
+	label{	
 		display: inline-block;
 		color: black;
 		width: 100%;
 		height: 100%;
 		text-align: center;
+		cursor: pointer;
 	}
 }
 .count_pos_items_order{
@@ -1331,4 +2423,143 @@ footer {
 	align-items: center;
 	justify-content: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//______________________________РАЗМЕР НЕ ДЕВАЙСНЫЙ___адоптация сайтбара
+@media(max-width: 900px){
+	// main
+	.main{
+		width: 100%;
+
+		//маска которая появится при выдвижении сайтбара
+	 //    &.maska_main:after{
+		// 	display: block;
+		//     content: '';
+		//     top: 0;
+		//     left: 0;
+		//     width: 100%;
+		//     height: 100%;
+		//     position: absolute;
+		//     z-index: 100;
+		// 	background-color: fade(black,80%);
+		// }
+	}
+	.container_main{
+		padding: 0 20px;
+	}
+	.head_intro_osnovnoy{
+		display: none;
+		width: 100%;
+	}
+	.head_intro_mini{
+		display: flex;
+	}
+
+	//sidebar
+	.container_saidbar{
+		display: flex;
+		flex-direction: column;
+		height: calc(100vh - 140px);
+	}
+	.sidebar{
+		transform: translateX(-300px);//________ТРАНСФОРМАЦИЯ САЙТБАРА________________________________________
+		padding-top: 40px;
+	}
+
+	.sidebar_headr{
+		height: 100px;
+		img{
+			object-fit: cover;
+		}
+	}
+	.sidebar_content{
+		margin-top: -17px;
+		.avatar{
+			width: 65px;
+			height: 65px;
+			margin: 0;
+		}
+		.profile_name{
+			font-size: 15px;
+			margin-top: -46px;
+    		margin-left: -5px;
+		}
+		.profile_specialnost{
+			font-size: 12px;
+			margin-left: 22px;
+		}
+		.social{
+			display: none;
+		}
+	}
+
+	.nav_saidebar{
+		display: block;
+	}
+
+	.sidebar_content .profile_text{
+		display: none;
+	}
+	.sidebar_footer {
+	    display: flex;
+	    flex-grow: 1;
+	    .button_saidbar{
+	    	align-items: flex-end;
+	    	margin-bottom: 20px;
+	    	.sidebar_footer .button_saidbar .btn{
+	    		max-height: 41px;
+	    		margin-top: 20px;
+	    	}
+	    }
+	}
+
+
+
+	
+	 
+
+
+	
+	
+}
+//______________________________
+//______________________________РАЗМЕР НЕ ДЕВАЙСНЫЙ
+@media(min-width: 900px){
+	// main
+	.head_intro_mini_fixed{//если ширина экрана будет больше чем 769 то шапка мини фиксированная скроется
+		display: none;
+	}
+}
+//_____________________________
+
+
 
